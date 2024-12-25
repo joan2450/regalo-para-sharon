@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalo de tu niñoo</title>
+</head>
+<body>
+    <h1>¡Te quierooomucho tu regalo por asi decirlo estará disponible a las 12:00 a.m. del 25 de diciembre de 2024!</h1>
+    <p>Asi que aun no esta disponible sjjs.</p>
+    
+    <button id="downloadButton" disabled>Descargar Regalo</button>
+    <p id="statusMessage"></p>
+    
+    <script>
+        // Fecha y hora de desbloqueo
+        const unlockDate = new Date("2024-12-25T05:00:00Z"); // Hora UTC (Bogotá está en UTC-5)
+
+        // Referencias a elementos HTML
+        const downloadButton = document.getElementById("downloadButton");
+        const statusMessage = document.getElementById("statusMessage");
+
+        // Función para actualizar el estado del botón
+        function updateButtonState() {
+            const now = new Date();
+
+            if (now >= unlockDate) {
+                downloadButton.disabled = false;
+                downloadButton.innerHTML = '<a href="https://www.mediafire.com/file/t3z0yjh8sb1gtpi/Libro_nuevo_%25281%2529.epub/file" download>Descargar Regalo</a>';
+                statusMessage.textContent = "ya puedes descargar tu regalo recuerda tener la aplicacion que te dije,Haz clic para descargarlo.";
+            } else {
+                const timeLeft = Math.ceil((unlockDate - now) / 1000); // Tiempo restante en segundos
+                const hours = Math.floor(timeLeft / 3600);
+                const minutes = Math.floor((timeLeft % 3600) / 60);
+                const seconds = timeLeft % 60;
+                statusMessage.textContent = Tiempo restante: ${hours}h ${minutes}m ${seconds}s;
+            }
+        }
+
+        // Actualiza el estado cada segundo
+        setInterval(updateButtonState, 1000);
+    </script>
+</body>
+</html>
